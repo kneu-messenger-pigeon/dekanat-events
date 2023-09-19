@@ -11,8 +11,8 @@ const LessonFormActionNumber = 10
 const LessonDeleteFormActionNumber = 11
 const ScoreEditFormActionNumber = 4
 
-const LessonFormAction = "edit"
-const ScoreEditFormAction = "insert"
+const LessonEditFormAction = "edit"
+const LessonInsertFormAction = "insert"
 const LessonDeleteFormAction = "delete"
 
 type Form map[string]string
@@ -30,9 +30,9 @@ func (form Form) toEvent(timestamp int64, receiptHandle *string) (event interfac
 	actionNumber, _ := strconv.Atoi(form["n"])
 	action, _ := form["action"]
 
-	if actionNumber == LessonFormActionNumber && action == LessonFormAction && form.hasLessonFormFields() {
+	if actionNumber == LessonFormActionNumber && action == LessonEditFormAction && form.hasLessonFormFields() {
 		event, err = createLessonEditEvent(form, commonEventData)
-	} else if actionNumber == LessonFormActionNumber && action == ScoreEditFormAction && form.hasLessonFormFields() {
+	} else if actionNumber == LessonFormActionNumber && action == LessonInsertFormAction && form.hasLessonFormFields() {
 		event, err = createLessonCreateEvent(form, commonEventData)
 	} else if actionNumber == LessonDeleteFormActionNumber && action == LessonDeleteFormAction {
 		event, err = createLessonDeleteEvent(form, commonEventData)

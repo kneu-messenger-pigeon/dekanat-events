@@ -1,6 +1,9 @@
 package dekanat_events
 
-import "github.com/mitchellh/mapstructure"
+import (
+	"github.com/mitchellh/mapstructure"
+	"strconv"
+)
 
 type LessonDeletedEvent struct {
 	CommonEventData
@@ -13,6 +16,9 @@ func createLessonDeleteEvent(form Form, eventData *CommonEventData) (event Lesso
 	return
 }
 
-func (event *LessonDeletedEvent) ToMessage() (message Message) {
-	return EventToMessage(event)
+func (event *LessonDeletedEvent) ToMessage() Message {
+	message := EventToMessage(event)
+	message.Form["n"] = strconv.Itoa(LessonDeleteFormActionNumber)
+	message.Form["action"] = LessonDeleteFormAction
+	return message
 }

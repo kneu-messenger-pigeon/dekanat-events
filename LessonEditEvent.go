@@ -23,8 +23,12 @@ func createLessonEditEvent(form Form, eventData *CommonEventData) (event LessonE
 	return
 }
 
-func (event *LessonEditEvent) ToMessage() (message Message) {
-	return EventToMessage(event)
+func (event *LessonEditEvent) ToMessage() Message {
+	message := EventToMessage(event)
+	message.Form["n"] = strconv.Itoa(LessonEditEventActionNumber)
+	message.Form["action"] = LessonEditFormAction
+
+	return message
 }
 
 func (event *LessonEditEvent) GetTypeId() uint8 {

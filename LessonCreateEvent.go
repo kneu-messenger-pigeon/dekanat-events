@@ -2,6 +2,7 @@ package dekanat_events
 
 import (
 	"github.com/mitchellh/mapstructure"
+	"strconv"
 )
 
 type LessonCreateEvent struct {
@@ -18,6 +19,10 @@ func createLessonCreateEvent(form Form, eventData *CommonEventData) (event Lesso
 	return
 }
 
-func (event *LessonCreateEvent) ToMessage() (message Message) {
-	return EventToMessage(event)
+func (event *LessonCreateEvent) ToMessage() Message {
+	message := EventToMessage(event)
+	message.Form["n"] = strconv.Itoa(LessonFormActionNumber)
+	message.Form["action"] = LessonInsertFormAction
+
+	return message
 }
