@@ -1,0 +1,2 @@
+[![Test](https://github.com/kneu-messenger-pigeon/dekanat-events/actions/workflows/test.yaml/badge.svg)](https://github.com/kneu-messenger-pigeon/dekanat-events/actions/workflows/test.yaml)
+[![codecov](https://codecov.io/gh/kneu-messenger-pigeon/dekanat-events/graph/badge.svg?token=ELCOmE65Vt)](https://codecov.io/gh/kneu-messenger-pigeon/dekanat-events)
