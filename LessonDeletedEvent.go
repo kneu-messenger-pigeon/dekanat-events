@@ -16,7 +16,7 @@ func createLessonDeleteEvent(form Form, eventData *CommonEventData) (event Lesso
 	return
 }
 
-func (event *LessonDeletedEvent) ToMessage() Message {
+func (event *LessonDeletedEvent) ToMessage() *Message {
 	message := EventToMessage(event)
 	message.Form["n"] = strconv.Itoa(LessonDeleteFormActionNumber)
 	message.Form["action"] = LessonDeleteFormAction

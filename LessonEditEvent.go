@@ -14,7 +14,7 @@ type LessonEditEvent struct {
 	TypeId    string `mapstructure:"tzn"`
 	Date      string `mapstructure:"date_z"`
 	TeacherId string `mapstructure:"teacher"`
-	IsDeleted bool
+	IsDeleted bool   `mapstructure:"-"`
 }
 
 func createLessonEditEvent(form Form, eventData *CommonEventData) (event LessonEditEvent, err error) {
@@ -23,7 +23,7 @@ func createLessonEditEvent(form Form, eventData *CommonEventData) (event LessonE
 	return
 }
 
-func (event *LessonEditEvent) ToMessage() Message {
+func (event *LessonEditEvent) ToMessage() *Message {
 	message := EventToMessage(event)
 	message.Form["n"] = strconv.Itoa(LessonEditEventActionNumber)
 	message.Form["action"] = LessonEditFormAction

@@ -19,7 +19,7 @@ func createLessonCreateEvent(form Form, eventData *CommonEventData) (event Lesso
 	return
 }
 
-func (event *LessonCreateEvent) ToMessage() Message {
+func (event *LessonCreateEvent) ToMessage() *Message {
 	message := EventToMessage(event)
 	message.Form["n"] = strconv.Itoa(LessonFormActionNumber)
 	message.Form["action"] = LessonInsertFormAction

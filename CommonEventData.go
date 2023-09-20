@@ -29,10 +29,12 @@ func parseUint(s string) uint {
 	return uint(value)
 }
 
-func EventToMessage(event interface{}) (message Message) {
+func EventToMessage(event interface{}) *Message {
 	tmpForm := map[string]interface{}{}
 
-	message.Form = Form{}
+	message := &Message{
+		Form: Form{},
+	}
 
 	_ = mapstructure.Decode(event, &tmpForm)
 	for key, value := range tmpForm {
@@ -51,5 +53,5 @@ func EventToMessage(event interface{}) (message Message) {
 		}
 	}
 
-	return
+	return message
 }

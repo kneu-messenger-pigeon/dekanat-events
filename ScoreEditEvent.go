@@ -52,7 +52,7 @@ func createScoreEditEvent(form Form, eventData *CommonEventData) (event ScoreEdi
 	return
 }
 
-func (event *ScoreEditEvent) ToMessage() Message {
+func (event *ScoreEditEvent) ToMessage() *Message {
 	message := EventToMessage(event)
 	message.Form["n"] = strconv.Itoa(ScoreEditFormActionNumber)
 
