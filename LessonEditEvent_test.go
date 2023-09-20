@@ -51,6 +51,16 @@ func TestLessonEditEvent_GetDate(t *testing.T) {
 		assert.Equal(t, expectedDate, testLessonEditEvent.GetDate())
 	})
 
+	t.Run("format Date", func(t *testing.T) {
+		now := time.Now()
+		expectedDate := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.Local)
+
+		event := LessonEditEvent{}
+		event.Date = expectedDate.Format(DekanatFormDateFormat)
+
+		assert.Equal(t, expectedDate, event.GetDate())
+	})
+
 	t.Run("empty date", func(t *testing.T) {
 		assert.True(t, (&LessonEditEvent{}).GetDate().IsZero())
 	})
