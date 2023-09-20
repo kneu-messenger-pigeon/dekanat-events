@@ -3,17 +3,17 @@ package dekanat_events
 import "encoding/json"
 
 type Message struct {
-	ReceiptHandle *string
-	Timestamp     int64  `json:"timestamp"`
-	Ip            string `json:"ip"`
-	Referer       string `json:"referer"`
-	Form          Form   `json:"form"`
+	ReceiptHandle *string `json:"-"`
+	Timestamp     int64   `json:"timestamp"`
+	Ip            string  `json:"ip"`
+	Referer       string  `json:"referer"`
+	Form          Form    `json:"form"`
 }
 
 func CreateMessage(jsonString *string, ReceiptHandle *string) (*Message, error) {
 	eventMessage := Message{}
-	eventMessage.ReceiptHandle = ReceiptHandle
 	err := json.Unmarshal([]byte(*jsonString), &eventMessage)
+	eventMessage.ReceiptHandle = ReceiptHandle
 	return &eventMessage, err
 }
 

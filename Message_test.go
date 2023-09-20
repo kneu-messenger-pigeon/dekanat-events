@@ -220,6 +220,7 @@ func TestMakeEventFromMessageJson(t *testing.T) {
 
 		assert.Error(t, err)
 		assert.Nil(t, event)
+		assert.Equal(t, &receiptHandle, message.ReceiptHandle)
 	})
 
 	t.Run("Wrong form", func(t *testing.T) {
@@ -236,6 +237,7 @@ func TestMakeEventFromMessageJson(t *testing.T) {
 
 		assert.Error(t, err)
 		assert.Nil(t, event)
+		assert.Equal(t, &receiptHandle, message.ReceiptHandle)
 	})
 
 	t.Run("Fetch wrong message", func(t *testing.T) {
@@ -247,6 +249,26 @@ func TestMakeEventFromMessageJson(t *testing.T) {
 		assert.False(t, message.HasValidForm())
 		assert.NotNil(t, message)
 		assert.Equal(t, "ReceiptHandle", *message.ReceiptHandle)
+
+		event, _ := message.ToEvent()
+		assert.Nil(t, event)
+	})
+
+	t.Run("Json contains receipt", func(t *testing.T) {
+		receiptHandle := "ReceiptHandle"
+
+		messageJson := fmt.Sprintf(EventMessageJSON, `{}`)
+
+		insertBefore := `"timestamp":`
+		insert := `"ReceiptHandle":null,`
+		messageJson = strings.Replace(messageJson, insertBefore, insert+insertBefore, 1)
+
+		message, err := CreateMessage(&messageJson, &receiptHandle)
+		assert.NoError(t, err)
+		assert.False(t, message.HasValidForm())
+		assert.NotNil(t, message)
+		assert.NotNil(t, message.ReceiptHandle)
+		assert.Equal(t, &receiptHandle, message.ReceiptHandle)
 
 		event, _ := message.ToEvent()
 		assert.Nil(t, event)
