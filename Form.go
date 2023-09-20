@@ -7,6 +7,8 @@ import (
 	"strconv"
 )
 
+const DekanatFormDateFormat = "02.01.2006"
+
 const LessonFormActionNumber = 10
 const LessonDeleteFormActionNumber = 11
 const ScoreEditFormActionNumber = 4
