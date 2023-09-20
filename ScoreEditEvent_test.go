@@ -1,4 +1,4 @@
-package dekanat_events
+package dekanatEvents
 
 import (
 	"testing"
