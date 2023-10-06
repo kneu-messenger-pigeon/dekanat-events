@@ -24,6 +24,10 @@ func (data *CommonEventData) GetDisciplineId() uint {
 	return parseUint(data.DisciplineId)
 }
 
+func (data *CommonEventData) GetSemester() uint {
+	return parseUint(data.Semester)
+}
+
 func parseUint(s string) uint {
 	value, _ := strconv.ParseUint(s, 10, 0)
 	return uint(value)
