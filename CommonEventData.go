@@ -25,7 +25,7 @@ func (data *CommonEventData) GetDisciplineId() uint {
 }
 
 func (data *CommonEventData) GetSemester() uint {
-	return parseUint(data.Semester)
+	return parseUint(data.Semester) + 1
 }
 
 func parseUint(s string) uint {

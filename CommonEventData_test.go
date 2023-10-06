@@ -11,7 +11,7 @@ var testCommonEventDataEvent = CommonEventData{
 	SessionId:     "00AB0000-0000-0000-0000-000CD0000AA0",
 	LessonId:      "999999",
 	DisciplineId:  "193000",
-	Semester:      "2",
+	Semester:      "0",
 }
 
 func TestCommonEventData_GetDisciplineId(t *testing.T) {
@@ -23,5 +23,9 @@ func TestCommonEventData_GetLessonId(t *testing.T) {
 }
 
 func TestCommonEventData_GetSemester(t *testing.T) {
-	assert.Equal(t, uint(2), testCommonEventDataEvent.GetSemester())
+	semester1 := CommonEventData{Semester: "0"}
+	semester2 := CommonEventData{Semester: "1"}
+
+	assert.Equal(t, uint(1), semester1.GetSemester())
+	assert.Equal(t, uint(2), semester2.GetSemester())
 }
