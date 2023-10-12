@@ -16,10 +16,18 @@ var testCommonEventDataEvent = CommonEventData{
 
 func TestCommonEventData_GetDisciplineId(t *testing.T) {
 	assert.Equal(t, uint(193000), testCommonEventDataEvent.GetDisciplineId())
+
+	t.Run("negative discipline id", func(t *testing.T) {
+		assert.Empty(t, (&CommonEventData{DisciplineId: "-1"}).GetDisciplineId())
+	})
 }
 
 func TestCommonEventData_GetLessonId(t *testing.T) {
 	assert.Equal(t, uint(999999), testCommonEventDataEvent.GetLessonId())
+
+	t.Run("negative discipline id", func(t *testing.T) {
+		assert.Empty(t, (&CommonEventData{LessonId: "-1"}).GetLessonId())
+	})
 }
 
 func TestCommonEventData_GetSemester(t *testing.T) {
