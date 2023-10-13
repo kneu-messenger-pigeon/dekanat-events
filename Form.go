@@ -19,7 +19,7 @@ const LessonDeleteFormAction = "delete"
 
 type Form map[string]string
 
-func (form Form) toEvent(timestamp int64, receiptHandle *string) (event interface{}, err error) {
+func (form Form) toEvent(timestamp int64, receiptHandle *string, formHasChanges bool) (event interface{}, err error) {
 	if !form.isValidEventForm() {
 		return nil, errors.New("invalid form")
 	}
@@ -28,6 +28,7 @@ func (form Form) toEvent(timestamp int64, receiptHandle *string) (event interfac
 	_ = mapstructure.Decode(form, commonEventData)
 	commonEventData.Timestamp = timestamp
 	commonEventData.ReceiptHandle = receiptHandle
+	commonEventData.HasChanges = formHasChanges
 
 	actionNumber, _ := strconv.Atoi(form["n"])
 	action, _ := form["action"]

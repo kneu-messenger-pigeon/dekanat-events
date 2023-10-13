@@ -3,11 +3,12 @@ package dekanatEvents
 import "encoding/json"
 
 type Message struct {
-	ReceiptHandle *string `json:"-"`
-	Timestamp     int64   `json:"timestamp"`
-	Ip            string  `json:"ip"`
-	Referer       string  `json:"referer"`
-	Form          Form    `json:"form"`
+	ReceiptHandle  *string `json:"-"`
+	Timestamp      int64   `json:"timestamp"`
+	Ip             string  `json:"ip"`
+	Referer        string  `json:"referer"`
+	FormHasChanges bool    `json:"formHasChanges"`
+	Form           Form    `json:"form"`
 }
 
 func CreateMessage(jsonString *string, ReceiptHandle *string) (*Message, error) {
@@ -18,7 +19,7 @@ func CreateMessage(jsonString *string, ReceiptHandle *string) (*Message, error) 
 }
 
 func (message *Message) ToEvent() (event interface{}, err error) {
-	return message.Form.toEvent(message.Timestamp, message.ReceiptHandle)
+	return message.Form.toEvent(message.Timestamp, message.ReceiptHandle, message.FormHasChanges)
 }
 
 func (message *Message) ToJson() *string {

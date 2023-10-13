@@ -10,10 +10,15 @@ import (
 type CommonEventData struct {
 	ReceiptHandle *string
 	Timestamp     int64
+	HasChanges    bool
 	SessionId     string `mapstructure:"sesID"`
 	LessonId      string `mapstructure:"prti"`
 	DisciplineId  string `mapstructure:"prt"`
 	Semester      string `mapstructure:"hlf"`
+}
+
+func (data *CommonEventData) IsCustomGroup() bool {
+	return data.GetDisciplineId() == 0
 }
 
 func (data *CommonEventData) GetLessonId() uint {
@@ -25,7 +30,12 @@ func (data *CommonEventData) GetDisciplineId() uint {
 }
 
 func (data *CommonEventData) GetSemester() uint {
-	return parseUint(data.Semester) + 1
+	value, err := strconv.ParseUint(data.Semester, 10, 0)
+	if err == nil {
+		return uint(value) + 1
+	}
+
+	return 0
 }
 
 func parseUint(s string) uint {

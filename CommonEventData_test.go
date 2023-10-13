@@ -33,7 +33,9 @@ func TestCommonEventData_GetLessonId(t *testing.T) {
 func TestCommonEventData_GetSemester(t *testing.T) {
 	semester1 := CommonEventData{Semester: "0"}
 	semester2 := CommonEventData{Semester: "1"}
+	semesterCustomGroup := CommonEventData{Semester: "undefined"}
 
 	assert.Equal(t, uint(1), semester1.GetSemester())
 	assert.Equal(t, uint(2), semester2.GetSemester())
+	assert.Equal(t, uint(0), semesterCustomGroup.GetSemester())
 }
