@@ -111,6 +111,19 @@ const CustomGroupLessonEditEventFormJSON = `{
     "remr": ""
 }`
 
+const CustomGroupLessonDeletedEventFormJSON = `{
+    "sesID": "CC74230A-0000-4713-8301-28D9D4773D70",
+    "n": "11",
+    "action": "delete",
+    "prti": "542266",
+    "prt": "undefined",
+    "d1": "",
+    "d2": "",
+    "m": "-1",
+    "hlf": "undefined",
+    "course": "undefined"
+}`
+
 const CustomGroupScoreEditEventFormJSON = `{
     "hlf": "0",
     "prt": "-1",
@@ -141,19 +154,6 @@ const CustomGroupScoreEditEventFormJSON = `{
     "st110232_1-542419": "",
     "st110232_2-542419": "нб/нп",
     "AddEstim": "0"
-}`
-
-const CustomGroupLessonDeletedEventFormJSON = `{
-    "sesID": "CC74230A-0000-4713-8301-28D9D4773D70",
-    "n": "11",
-    "action": "delete",
-    "prti": "542266",
-    "prt": "undefined",
-    "d1": "",
-    "d2": "",
-    "m": "-1",
-    "hlf": "undefined",
-    "course": "undefined"
 }`
 
 var testReceiptHandle = "ReceiptHandle"
