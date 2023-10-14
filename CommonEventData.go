@@ -57,6 +57,7 @@ func EventToMessage(event interface{}) *Message {
 
 			message.ReceiptHandle = commonEventDataMap["ReceiptHandle"].(*string)
 			message.Timestamp = commonEventDataMap["Timestamp"].(int64)
+			message.FormHasChanges = commonEventDataMap["HasChanges"].(bool)
 
 			delete(commonEventDataMap, "ReceiptHandle")
 			delete(commonEventDataMap, "Timestamp")

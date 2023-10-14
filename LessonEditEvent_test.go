@@ -26,6 +26,7 @@ func TestLessonEditEvent_ToMessage(t *testing.T) {
 		originalEvent := LessonEditEvent{
 			CommonEventData: CommonEventData{
 				Timestamp:    1673000000,
+				HasChanges:   true,
 				SessionId:    "00AB0000-0000-0000-0000-000CD0000AA0",
 				LessonId:     "999999",
 				DisciplineId: "193000",
