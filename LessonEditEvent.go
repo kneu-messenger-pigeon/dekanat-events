@@ -3,6 +3,7 @@ package dekanatEvents
 import (
 	"github.com/mitchellh/mapstructure"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -36,10 +37,11 @@ func (event *LessonEditEvent) GetTypeId() uint8 {
 }
 
 func (event *LessonEditEvent) GetDate() (date time.Time) {
-	if event.Date != "" {
-		year, _ := strconv.Atoi(event.Date[6:10])
-		month, _ := strconv.Atoi(event.Date[3:5])
-		day, _ := strconv.Atoi(event.Date[0:2])
+	dateParts := strings.Split(event.Date, ".")
+	if len(dateParts) == 3 {
+		year, _ := strconv.Atoi(dateParts[2])
+		month, _ := strconv.Atoi(dateParts[1])
+		day, _ := strconv.Atoi(dateParts[0])
 		date = time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
 	}
 	return
